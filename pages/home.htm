@@ -1,0 +1,130 @@
+url = "/"
+layout = "default"
+title = "ТЕАМ#UP"
+is_hidden = 0
+meta_description = "homepage desc"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+
+[jumbotron numbers]
+jumbotron = "team-statistics"
+title = 1
+background = "transperant"
+templates = "template1"
+description_limit = 0
+
+[jumbotron derto]
+jumbotron = "derto"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<?php
+use Pensoft\Calendar\Models\Entry;
+use Pensoft\Articles\Models\Article;
+use Pensoft\Partners\Models\Partners as Partner;
+use Carbon\Carbon;
+function onStart(){
+    $this['entries'] = Entry::where('end', '>', Carbon::now())->where('show_on_timeline', true)->where('is_internal', false)->orderBy('start', 'asc')->take(3)->get();
+    $this['news'] = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->take(3)->orderBy('published_at', 'DESC')->get();
+    $this['consortium_partners'] = Partner::where('type', 1)->get();
+
+}
+==
+
+<div class="container mt-4 mb-4">
+    {% component 'numbers' %}
+</div>
+
+<div class="container-fluid derto_container">
+    <div class="container">
+        {% component 'derto' %}
+    </div>
+</div>
+
+
+<!-- latest from news -->
+<div class="container-fluid bg-secondary">
+    <div class="container highlights-news">
+        <div class="row mt-4">
+            <div class="col-xs-12">
+                <h1 class="display-1">Latest news</h1>
+            </div>
+        </div>
+        <div class="row newslist">
+            <div class="col-xs-12">
+                    {% for highlight in news %}
+                    <div class="col-xs-12 col-md-4 news-item item-{{highlight.slug}}">
+
+
+                        <div class="row news_column">
+                            <a href="{{'news'|page}}/{{highlight.slug}}">
+                                <div class="news_image">
+                                    <img class="news-img-top" src="{{ highlight.cover|resize(362, 207, {'mode': 'crop'}) }}" />
+                                </div>
+                                <div class="news-container">
+                                    <div class="news-title">
+                                        <h3 class="card-title">{{highlight.title}}</h3>
+                                    </div>
+                                    <div class="read_more">Read more</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        <div class="row mt-2 mb-4">
+            <div class="col-xs-12 center-xs">
+                <a href="{{'news'|page}}" class="btn btn-primary">View all news</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 upcoming_events_container">
+
+            <h1 class="display-1">Upcoming events</h1>
+    <div class="gradient_container">
+            {% for event in entries %}
+                <div class="row entry_item">
+                    <div class="col-md-2 col-xs-12 start-md center-xs date_container">
+                        <span class="date_day">{{event.start|date("d")}}</span>
+                        <span class="date_month">{{event.start|date("M")}}</span>
+                        <span class="date_year">{{event.start|date("Y")}}</span>
+                    </div>
+                    <div class="col-md-8 col-xs-12 start-md center-xs">
+                        <h3>{{event.title|raw}}</h3>
+                        <p>{{event.place}}</p>
+                    </div>
+                    <div class="col-md-2 col-xs-12 end-md center-xs read_more_container">
+                        <a href="{{'events'|page}}/{{event.slug}}" class="read_more">Read more</a>
+                    </div>
+                </div>
+                <div class="gradientback"></div>
+            {% endfor %}
+        </div>
+
+    <div class="row mt-2 mb-4">
+        <div class="col-xs-12 center-xs">
+            <a href="{{'events'|page}}" class="btn btn-primary">View all events</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="row container middle-xs between-xs">
+    <h1 class="display-1">TEAM#UP in my country</h1>
+    <div class="col-xs-12 center-xs consortium_partners">
+        <div id="slick">
+            {% for c in consortium_partners %}
+            <div class="slide">
+                <div class="partner_logo"><a href="{{c.instituion_url}}" target="_blank">
+                    <img alt="{{ c.instituion }}" title="{{ c.instituion }}" src="{{c.cover.thumb(auto,108,{'mode':'crop'})}}"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

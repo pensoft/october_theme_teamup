@@ -1,0 +1,161 @@
+.jumbotron {
+    position: absolute;
+    width: 100%;
+
+    .breakpoint-large-down({
+        padding-top: 95px;
+    });
+}
+
+.home{
+    .statistics{
+        .statistic_item{
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid @link-color;
+            border-radius: 15px;
+            //padding: 30px 10px 0 10px;
+            width: 85%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: @link-color;
+
+            h5{
+                color: white;
+                border-top-left-radius: 13px;
+                border-top-right-radius: 13px;
+                background: @link-color;
+                padding: 20px 0px;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            p{
+                padding: 20px;
+            }
+        }
+    }
+
+    .derto_container{
+        background: url("../../assets/images/grass_bg.png") center no-repeat;
+        background-size: cover;
+        color: white;
+        padding: 30px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h4{
+            font-size: 33px;
+            line-height: 40px;
+            color: @white-color;
+            margin-bottom: 40px;
+        }
+        .btn-primary{
+            color: @date-text-color;
+            background-color: @white-color;
+            margin: 40px auto 0 auto;
+            display: table;
+        }
+    }
+}
+
+.grass_bg_container {
+    background: url("../../assets/images/grass_bg.png") center no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+
+}
+
+.about, .deliverables{
+    #layout-content{
+        font-size: 22px!important;
+        line-height: 30px!important;
+        font-weight: normal;
+        img{
+            border-radius: 15px;
+        }
+    }
+}
+
+.what-ecological-restoration{
+    h2.underline{
+        display: none;
+    }
+    p:has(.edit-link), .edit-link{
+        display: none;
+    }
+
+
+}
+
+.intro_text{
+    font-size: 22px!important;
+    line-height: 30px!important;
+    font-weight: normal;
+}
+
+.objectives_container{
+    .objectives{
+        .col-md-3{
+            position: relative;
+            margin-top: 60px;
+            p{
+                box-shadow: 0px 0px 6px #00000029;
+                border-radius: 15px;
+                padding: 60px 25px 25px 25px;
+                font-size: 17px;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+                min-height: 247px;
+            }
+            h3{
+                position: absolute;
+                z-index: 2;
+                margin:  0 auto;
+                width: 218px;
+                height: 78px;
+                max-width: 90%;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                border-radius: 15px;
+                background: @date-text-color;
+                left: 50px;
+                top: -40px;
+            }
+
+            &:nth-of-type(2), &:nth-of-type(7){
+                h3{
+                    background: @link-text-color;
+                }
+            }
+            &:nth-of-type(3), &:nth-of-type(6){
+                h3{
+                    background: @location-color;
+                }
+            }
+            &:nth-of-type(4), &:nth-of-type(5){
+                h3{
+                    background: @link-color;
+                }
+            }
+        }
+    }
+}
+
+.workplan_text_container{
+    strong{
+        color: @date-text-color;
+    }
+}
+
