@@ -1,0 +1,58 @@
+url = "/workplan"
+layout = "default"
+title = "Workplan"
+is_hidden = 0
+meta_description = "about page"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+header_image = "Wirkplan.png"
+
+[siteSearchInclude]
+
+[jumbotron intro]
+jumbotron = "workplan-intro"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron objectives]
+jumbotron = "objectives"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[accordion workplans]
+maxItems = 10
+accordion = 2
+elementId = "structure"
+active = 0
+collapsible = "false"
+heightStyle = "auto"
+iconsHeader = "ui-icon-triangle-1-e"
+iconsHeaderActive = "ui-icon-triangle-1-s"
+templates = "template5"
+
+[jumbotron worplan]
+jumbotron = "workplan"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+{% component 'siteSearchInclude' %}
+<div class="container intro_text">
+    {% component 'intro' %}
+</div>
+<div class="container objectives_container">
+    {% component 'objectives' %}
+</div>
+<div class="container">
+    {% component 'worplan' %}
+</div>
+<div class="container-fluid grass_bg_container">
+    <div class="container work_packages">
+        {% component 'workplans' %}
+    </div>
+</div>

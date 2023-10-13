@@ -1,0 +1,42 @@
+url = "/policy"
+layout = "default"
+title = "Policy"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+policy-intro
+
+[jumbotron policy_cubes]
+jumbotron = "policy-cubes"
+title = 0
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron policy-intro]
+jumbotron = "policy-intro"
+title = 0
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[siteSearchInclude]
+==
+{% component 'siteSearchInclude' %}
+<!-- Intro -->
+{% component 'policy-intro' %}
+
+<!-- Cubes -->
+{% component 'policy_cubes' %}
+
+<script>
+    $(document).ready(function() {
+        $('.text').click(function() {
+            $(this).closest('.col-xs-12').toggleClass('toggled');
+            $(this).toggleClass('clicked');
+            $(this).next('.hidden-text').toggleClass('show-hidden-text');
+        });
+    });
+</script>
+    
