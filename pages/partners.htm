@@ -29,7 +29,6 @@ function onStart(){
     };
 
 }
-
 ?>
 ==
 <div class="container">
@@ -57,8 +56,8 @@ function onStart(){
                             <div class="contact_info row">
                                 <div class="col-md-5 col-xs-12 coordinator_image">
                                     {% if profile.avatar %}
-                                    <!--                            <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(175,145,{'mode':'crop'})}}">-->
-                                    <img alt="{{ profile.names }}" src="{{profile.avatar.thumb(130,111,{'mode':'crop'})}}">
+                                    <!--<img alt="{{ profile.names }}" src="{{profile.avatar.thumb(122,111,{'mode':'crop'})}}">-->
+                                    <img alt="{{ profile.names }}" src="{{profile.avatar.path}}">
                                     {% else %}
                                     <img alt="{{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="130" height="111" class="no-image">
                                     {% endif %}
