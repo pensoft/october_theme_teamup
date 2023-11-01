@@ -19,6 +19,7 @@ use Pensoft\Cardprofiles\Models\Profiles;
 use Rainlab\Location\Models\Country;
 
 function onStart(){
+    $this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
 	$this['partners'] =  Partners::where('type', 1)->get();
     $this['countries'] =  Country::where('is_enabled', true)->get();
 
@@ -39,6 +40,9 @@ function onStart(){
         <div class="partners_list">
             {% for partner in partners %}
             <div class="col-xs-12 partner-item">
+                {% if loggedIn %}
+                <p><a class="edit-link" href="/admin/pensoft/partners/partners/update/{{partner.id}}" target="_blank">Edit</a></p>
+                {% endif %}
                 <div class="row">
                     <div class="col-xs-12 col-md-2 start-md center-xs partner_cover"><img src="{{partner.cover.thumb(197, auto, {mode: 'crop'})}}"></div>
                     <div class="col-xs-12 col-md-7 start-md center-xs partner_title">{{partner.instituion}}</div>
@@ -68,6 +72,9 @@ function onStart(){
                                 </div>
                             </div>
                         </div>
+                        {% if loggedIn %}
+                        <p><a class="edit-link" href="/admin/pensoft/cardprofiles/profiles/update/{{partner.id}}" target="_blank">Edit</a></p>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

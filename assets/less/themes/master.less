@@ -71,7 +71,11 @@ h1.display-1{
 }
 
 p:has(.edit-link){
-    display: none!important;
+    .edit-link{
+        color: red!important;
+        font-weight: normal!important;
+    }
+    //display: none!important;
 }
 
 .head{
@@ -656,7 +660,7 @@ footer .align-items-center{
        right: unset!important;
        bottom: unset!important;
        padding-left: 20px;
-       padding-right: 20px; 
+       padding-right: 20px;
     });
 
     h3{
@@ -696,7 +700,7 @@ footer .align-items-center{
     object-fit: cover;
     min-width: 100%;
     min-height: 100%;
- 
+
 }
 
 .carousel-indicators{

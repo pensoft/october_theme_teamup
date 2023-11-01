@@ -25,6 +25,12 @@ background = "transperant"
 templates = "template1"
 description_limit = 0
 ==
+<?php
+function onStart(){
+    $this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
+}
+?>
+==
 <!DOCTYPE html>
 <html>
 
