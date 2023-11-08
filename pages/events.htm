@@ -6,10 +6,26 @@ robot_index = "index"
 robot_follow = "follow"
 header_image = "Events.png"
 
-[calendar]
+[calendar calendar_all]
 default = "true"
 limit = "null"
 category = "null"
+language = "en"
+redirect_to_detailed_page = "false"
+default_view = "dayGridMonth"
+
+[calendar calendar_organized]
+default = "true"
+limit = "null"
+category = "1"
+language = "en"
+redirect_to_detailed_page = "false"
+default_view = "dayGridMonth"
+
+[calendar calendar_involved]
+default = "true"
+limit = "null"
+category = "2"
 language = "en"
 redirect_to_detailed_page = "false"
 default_view = "dayGridMonth"
@@ -18,7 +34,7 @@ default_view = "dayGridMonth"
 use Pensoft\Calendar\Models\Entry;
 
 function onStart(){
-
+    $this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
     if($this->param('slug')){
 $this['entry'] =  Entry::select(
 '*',
@@ -78,6 +94,7 @@ $this['slug'] = $this->param('slug');
     <div class="container">
 
         <div class="row" id="listView">
+        {% if entries.count %}
             <div class="events_list_container">
                 {% for entry in entries %}
                 {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
@@ -110,19 +127,46 @@ $this['slug'] = $this->param('slug');
                         </div>
                     </div>
 
+                    {% if loggedIn %}
+                    <p><a class="edit-link" href="/admin/pensoft/calendar/entries/update/{{entry.id}}" target="_blank">Edit</a></p>
+                    {% endif %}
                 </div>
 
                 {% endfor %}
             </div>
+
             {% if entries.count > 20 %}
             <div class="row container">
                 {{ entries.fragment('listView').render|raw }}
             </div>
             {% endif %}
 
+            {% else %}
+            Our upcoming events will be shared as we embark on our journey. In the meantime, explore our website, learn more about our mission, and follow us on social media to stay updated with the latest news.
+            Together, we can make a significant difference in the world of ecological restoration, one event at a time.
+            <br><span style='font-size:20px;'>&#127807;</span> Stay Green, Stay Connected, Stay Tuned! <span style='font-size:20px;'>&#127757;</span> <span style='font-size:20px;'>&#128154;</span>
+            {% endif %}
+
+
         </div>
         <div class="row" id="calendarView">
-            {% component 'calendar' %}
+            <div class="subtabs">
+                <ul>
+                    <li><a href="#all">All events</a></li>
+                    <li><a href="#organized">ТЕАМ#UP organized</a></li>
+                    <li><a href="#involved">ТЕАМ#UP involved</a></li>
+                </ul>
+                <div id="all" class="subtabContent">
+                    {% component 'calendar_all' %}
+                </div>
+                <div id="organized" class="subtabContent">
+                    {% component 'calendar_organized' %}
+                </div>
+                <div id="involved" class="subtabContent">
+                    {% component 'calendar_involved' %}
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -165,15 +209,20 @@ $this['slug'] = $this->param('slug');
             {% endif %}
 
 
+            <br><br>
+            <a  class="btn btn-primary" target="_blank"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{entry.title}}&details={{entry.description|raw}}&dates={% if entry.start|date("Ymd") != entry.end|date("Ymd") %}{{entry.start|date("Ymd")}}/{{entry.end|date("Ymd")}} {% else %} {{entry.start|date("Ymd")}} {% endif %}&location={{entry.place}}">
+            Add to my calendar</a>
 
             <div class="row share_container middle-xs">
                 <div class="col-lg-1 col-xs-2 start-xs">Share</div>
                 <div class="col-xs-10">
                     <a href="http://twitter.com/share?text={{entry.title}}&url={{page_url}}" target="_blank" class="btn p-primary pr p-twitter medium"></a>
 
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>
+                    <!--<a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>-->
 
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="btn pr p-primary p-linkedin medium"></a>
+
 
                 </div>
             </div>
@@ -181,6 +230,9 @@ $this['slug'] = $this->param('slug');
 
         </div>
     </div>
+    {% if loggedIn %}
+    <p><a class="edit-link" href="/admin/pensoft/calendar/entries/update/{{entry.id}}" target="_blank">Edit</a></p>
+    {% endif %}
 </div>
 
 {% endif %}

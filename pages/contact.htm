@@ -12,6 +12,7 @@ header_image = "Contact.png"
 use Pensoft\Cardprofiles\Models\Profiles;
 
 function onStart(){
+    $this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
 	$this['profiles'] =  Profiles::where('category_id', 1)->get();
 }
 ?>
@@ -37,6 +38,10 @@ function onStart(){
 <!--                    {% if profile.address %}<p class="contact_address"><i class="pr big p-location"></i>{{profile.address}}</p>{% endif %}-->
 <!--                    {% if profile.content %}<p class="contact_address">{{profile.content|raw}}</p>{% endif %}-->
 <!--                    {% if profile.phone %}<p class="contact_phone"><i class="pr big p-phone"></i>{{profile.phone}}</p>{% endif %}-->
+
+                    {% if loggedIn %}
+                    <p><a class="edit-link" href="/admin/pensoft/cardprofiles/profiles/update/{{profile.id}}" target="_blank">Edit</a></p>
+                    {% endif %}
 
                 </div>
             </div>

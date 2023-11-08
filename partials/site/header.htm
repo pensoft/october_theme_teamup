@@ -60,9 +60,9 @@ numberOfLevels = 2
 {% if page_id != 'home' %}
     {% if this.page.header_image %}
     <div class="header-image {{page_id}}">
-        <div class="header-image-bar" style="background-image: url('{{this.page.header_image|media}}'); background-position: center;">
+        <div class="header-image-bar" style="background-image: url('{{this.page.header_image|media}}'); {% if page_id == 'partners' %} background-position: bottom; {% else %} background-position: center; {% endif %}">
             <div class="jumbotron">
-                <h1 data-aos="fade-up" class="underline white  {% if page_id == 'home'%}home-page-header{% endif %}">{%if page_title%} {{page_title}} {%else%} {{site_name}} {%endif%}</h1>
+                <h1 data-aos="fade-up" class="underline white" {% if page_id == 'partners'%}style="text-shadow: 0 0 5px black;"{% endif %}>{%if page_title%} {{page_title}} {%else%} {{site_name}} {%endif%}</h1>
             </div>
         </div>
     </div>

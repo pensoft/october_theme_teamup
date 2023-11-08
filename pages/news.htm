@@ -1,6 +1,7 @@
 url = "/news/:id?|[a-zA-Z\-0-9]"
 layout = "default"
 title = "News"
+description = "Some test caption"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
@@ -16,6 +17,7 @@ function urlencode($string){
 }
 function onStart()
 {
+$this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
 $this['records'] = Article::news()->where('published_at', '<=', 'now()')->where('published', 'true')->orderBy('published_at', 'DESC')->paginate(15, ['*'], 'p');
 
     $this['article'] = Pensoft\Articles\Models\Article::where('slug', $this->param('id'))->where('published', 'true')->first();
@@ -104,7 +106,7 @@ $this['related'] = $related;
                     <div class="col-xs-10">
                         <a href="http://twitter.com/share?text={{article.title}}&url={{page_url}}" target="_blank" class="btn p-primary pr p-twitter normal"></a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>
+                        <!--<a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="btn pr p-primary p-facebook medium"></a>-->
 
                         <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="btn pr p-primary p-linkedin medium"></a>
 
@@ -113,6 +115,9 @@ $this['related'] = $related;
 
 
             </div>
+            {% if loggedIn %}
+            <p><a class="edit-link" href="/admin/pensoft/articles/article/update/{{article.id}}" target="_blank">Edit</a></p>
+            {% endif %}
         </div>
 </div>
 	{% else %}
@@ -138,7 +143,11 @@ $this['related'] = $related;
                                 <span class="read_more">Read more</span>
                             </div>
                         </a>
+                        {% if loggedIn %}
+                        <p><a class="edit-link" href="/admin/pensoft/articles/article/update/{{record.id}}" target="_blank">Edit</a></p>
+                        {% endif %}
                     </div>
+
 
                 </div>
 

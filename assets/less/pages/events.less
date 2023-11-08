@@ -165,6 +165,82 @@
 
 }
 
+.subtabs{
+    margin-top: 20px;
+    width: 100%;
+    .subtabContent{
+        ul{
+            list-style-image: none;
+            padding-left: 0;
+            padding-right: 20px;
+            li{
+                background: url('../../assets/images/green_bullet.svg') left no-repeat;
+                background-size: 22px;
+                background-position-y: 3px;
+                padding: 0px 0 3px 29px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+.subtabs ul.ui-tabs-nav{
+    list-style-image: none;
+    padding-left: 0px;
+    display: flex;
+    margin-bottom: 50px;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    //justify-content: space-between;
+    .breakpoint-large-down({
+        flex-direction: column;
+        width: 85%;
+    });
+
+    li{
+        display: contents;
+        padding: 3px 0 13px 8px;
+        width: 100%;
+        .breakpoint-large-down({
+            width: 85% !important;
+        });
+        a{
+            border-radius: 18px;
+            background: #b18249;
+            padding: 10px 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            max-width: 100%;
+            margin-right: 10px;
+            .breakpoint-huge-down({
+                font-size: 16px;
+                margin-bottom: 20px;
+            });
+        }
+
+        &:nth-of-type(3){
+            a{
+                background: #719e05;
+            }
+        }
+    }
+
+    li.ui-state-hover, li.ui-tabs-active{
+        a{
+            background: #d8b281;
+
+        }
+        &:nth-of-type(3){
+            a{
+                background: #b0c536;
+            }
+        }
+    }
+}
+
+
 .events{
     .tabs + div.row{
         width: 100%;

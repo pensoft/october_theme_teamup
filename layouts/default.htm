@@ -24,8 +24,12 @@ title = 0
 background = "transperant"
 templates = "template1"
 description_limit = 0
-
-
+==
+<?php
+function onStart(){
+    $this['loggedIn'] = !empty(\BackendAuth::getUser()) ? true : false;
+}
+?>
 ==
 <!DOCTYPE html>
 <html>
@@ -66,13 +70,13 @@ description_limit = 0
     <!-- Matomo -->
 <script>
   var _paq = window._paq = window._paq || [];
-  / tracker methods like "setCustomDimension" should be called before "trackPageView" /
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
     var u="//matomo.pensoft.net/";
     _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '26']);
+    _paq.push(['setSiteId', '29']);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();

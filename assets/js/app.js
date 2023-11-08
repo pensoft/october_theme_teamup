@@ -81,6 +81,10 @@ $(document).ready(function() {
         $(value).find('a').attr( "onclick", "window.open(this.href, '_blank');" )
     });
 
+    $('p:has(.edit-link)').each(function(){
+        $(this).find('a').attr( "onclick", "window.open(this.href, '_blank');" )
+    });
+
 	onHashChange();
 	$(window).on("hashchange", function() {
 		onHashChange();
@@ -171,6 +175,10 @@ $(document).ready(function() {
             e.preventDefault();
         });
     });
+
+    $( ".tabs" ).tabs();
+    $( ".subtabs" ).tabs();
+    openParentTab();
 
 	$('.numbers').attr('data-aos', 'fade-up');
 	$('.card-img-top').attr('data-aos', 'fade-up');
@@ -332,7 +340,31 @@ $(document).ready(function() {
         }
     });
 
+
 });
+
+
+function openParentTab() {
+    locationHash = location.hash.substring( 1 );
+    // Check if we have an location Hash
+    if (locationHash) {
+        // Check if the location hash exsist.
+        var hash = jQuery('#'+locationHash);
+        if (hash.length) {
+            // Check of the location Hash is inside a tab.
+            if (hash.closest(".tabContent").length) {
+                // Grab the index number of the parent tab so we can activate it
+                var tabNumber = hash.closest(".tabContent").index();
+                jQuery(".tabs.fix").tabs({ active: tabNumber });
+                // Not need but this puts the focus on the selected hash
+                hash.get(0).scrollIntoView();
+                setTimeout(function() {
+                    hash.get(0).scrollIntoView();
+                }, 1000);
+            }
+        }
+    }
+}
 
 function showHideWP(target){
     // if (width < 1024) {
