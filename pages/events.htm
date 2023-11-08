@@ -17,7 +17,7 @@ default_view = "dayGridMonth"
 [calendar calendar_organized]
 default = "true"
 limit = "null"
-category = "1"
+category = 1
 language = "en"
 redirect_to_detailed_page = "false"
 default_view = "dayGridMonth"
@@ -25,10 +25,13 @@ default_view = "dayGridMonth"
 [calendar calendar_involved]
 default = "true"
 limit = "null"
-category = "2"
+category = 2
 language = "en"
 redirect_to_detailed_page = "false"
 default_view = "dayGridMonth"
+
+[event_galleries]
+
 ==
 <?php
 use Pensoft\Calendar\Models\Entry;
@@ -199,6 +202,12 @@ $this['slug'] = $this->param('slug');
         <div class="col-xs-12 mt-2">
             <div class="content">
                 {{entry.description|raw}}
+
+                <div class="row image-gallery-container">
+                    <div class="image-gallery">
+                        {% component 'event_galleries' %}
+                    </div>
+                </div>
             </div>
 
         </div>
