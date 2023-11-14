@@ -153,6 +153,7 @@ ul.pagination{
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
         .breakpoint-large-down({
         //    background-size: contain;
         //    background-position: top 57px left!important;
@@ -160,6 +161,12 @@ ul.pagination{
            height: 128px;
         //    padding-top: 57px;
         });
+        .header_caption{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.5;
+        }
     }
 
     h1 {

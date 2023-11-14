@@ -64,6 +64,7 @@ numberOfLevels = 2
             <div class="jumbotron">
                 <h1 data-aos="fade-up" class="underline white" {% if page_id == 'partners'%}style="text-shadow: 0 0 5px black;"{% endif %}>{%if page_title%} {{page_title}} {%else%} {{site_name}} {%endif%}</h1>
             </div>
+            <span class="header_caption">{{ this.page.description }}</span>
         </div>
     </div>
     {% else %}
