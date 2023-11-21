@@ -159,6 +159,7 @@ ul.pagination{
         //    background-position: top 57px left!important;
         //    background-repeat: no-repeat;
            height: 128px;
+           margin-top: 60px;
         //    padding-top: 57px;
         });
         .header_caption{
@@ -214,7 +215,7 @@ ul.pagination{
     &:not(.home, .about){
         padding-top: 50px;
         .breakpoint-large-down({
-            padding-top: 50px;
+            padding-top: 0px;
         });
     }
     &:not(.news, .contact){
@@ -224,7 +225,12 @@ ul.pagination{
         }
     }
 
+}
 
+.content-wrapper.home #layout-header{
+    .breakpoint-large-down({
+            margin-bottom: -40px;
+        });
 }
 
 
@@ -1111,4 +1117,54 @@ now override the 3.3 new styles for modern browsers & apply opacity
 .col-lg-6.col-xs-12{
     padding-left: 0!important;
     padding-right: 0!important;
+}
+
+
+.skiptranslate{
+    .breakpoint-huge-down({
+        position: absolute!important;
+        display: none!important;
+    });
+}
+
+#google_translate_element {
+    display: block;
+    height: 40px;
+    width: 200px;
+    /* background: #b1c524; */
+    padding: 5px 50px;
+    position: absolute;
+    top: 43px!important;
+    overflow: hidden;
+    z-index: 9999;
+    left: 200px;
+    .breakpoint-huge-down({
+        display: none;
+    });
+
+    select.goog-te-combo {
+        padding: 5px;
+        height: auto;
+        min-width: 200px;
+        line-height: 20px;
+        max-width: 46% !important;
+        margin: 0 auto 50px auto;
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 1px 3px 21px #00000017;
+        -moz-box-shadow: 1px 3px 21px #00000017;
+        -webkit-box-shadow: 1px 3px 17px #00000017;
+        border-radius: 5px;
+        color: #717171;
+        font-size: 15px;
+        border: none;
+    }
+
+}
+
+.carousel{
+    position:relative;
+    .breakpoint-large-down({
+        top: -40px;
+    });
+    
 }
