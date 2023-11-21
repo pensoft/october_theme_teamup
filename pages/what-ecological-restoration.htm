@@ -20,8 +20,69 @@ heightStyle = "auto"
 iconsHeader = "ui-icon-triangle-1-e"
 iconsHeaderActive = "ui-icon-triangle-1-s"
 templates = "template5"
+
+[jumbotron]
+jumbotron = "before-and-after"
+background = "transperant"
+templates = "template1"
+description_limit = 0
+
+[galleries]
+
 ==
 {% component 'siteSearchInclude' %}
+
+<div class="container before-after">
+    {% component 'jumbotron' %}
+</div>
 <div class="container">
 {% component 'accordion' %}
 </div>
+
+
+<script>
+    function initializeGalleries() {
+        let galleries = document.querySelectorAll('.gallery_container');
+
+        galleries.forEach(function(gallery, index) {
+            let slides = gallery.querySelectorAll('.mySlides');
+            let prevButton = gallery.querySelector('.prev');
+            let nextButton = gallery.querySelector('.next');
+            let dots = gallery.querySelectorAll('.demo');
+            let captionText = gallery.querySelector('.caption-container p');
+            let slideIndex = 1;
+
+            showSlides(slideIndex, slides, captionText, dots);
+
+            prevButton.addEventListener('click', function() {
+                showSlides(slideIndex -= 1, slides, captionText, dots);
+            });
+
+            nextButton.addEventListener('click', function() {
+                showSlides(slideIndex += 1, slides, captionText, dots);
+            });
+
+            dots.forEach(function(dot, dotIndex) {
+                dot.addEventListener('click', function() {
+                    showSlides(slideIndex = dotIndex + 1, slides, captionText, dots);
+                });
+            });
+
+            function showSlides(n, slides, captionText, dots) {
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                captionText.innerHTML = dots[slideIndex - 1].getAttribute('alt');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeGalleries);
+</script>

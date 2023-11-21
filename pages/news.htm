@@ -87,18 +87,22 @@ $this['related'] = $related;
             {% endif %}
 
             <div class="col-md-6 col-xs-12">
-                    <div class="news-title">
-                        <h1 class="single-new-title">{{article.title}}</h1>
-                    </div>
-                    <div class="text-published">{{article.published_at|date("d M Y")}}</div>
+                <div class="news-title">
+                    <h1 class="single-new-title">{{article.title}}</h1>
+                </div>
+                <div class="text-published">{{article.published_at|date("d M Y")}}</div>
 
             </div>
             <div class="col-xs-12">
                 <div class="content">
                     {{article.content|raw}}
                 </div>
+            </div>         
+            <div class="row image-gallery-container pt-4">
+                <div class="image-gallery">
+                    {% component 'article_galleries' %}
+                </div>
             </div>
-
             <div class="col-xs-12">
 
                 <div class="row share_container middle-xs">
@@ -118,11 +122,6 @@ $this['related'] = $related;
             {% if loggedIn %}
             <p><a class="edit-link" href="/admin/pensoft/articles/article/update/{{article.id}}" target="_blank">Edit</a></p>
             {% endif %}
-        </div>
-        <div class="row image-gallery-container pt-4">
-            <div class="image-gallery">
-                {% component 'article_galleries' %}
-            </div>
         </div>
 </div>
 	{% else %}

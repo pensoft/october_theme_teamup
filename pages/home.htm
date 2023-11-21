@@ -19,6 +19,9 @@ jumbotron = "derto"
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
+[galleries]
+
 ==
 <?php
 use Pensoft\Calendar\Models\Entry;
@@ -114,7 +117,6 @@ function onStart(){
 </div>
 {% endif %}
 
-
 <div class="row container middle-xs between-xs">
     <h1 class="display-1">TEAM#UP Partners</h1>
     <div class="col-xs-12 center-xs consortium_partners">
@@ -129,3 +131,53 @@ function onStart(){
         </div>
     </div>
 </div>
+
+<script>
+    // Function to initialize all galleries on the page
+    function initializeGalleries() {
+        // Find all gallery containers
+        let galleries = document.querySelectorAll('.gallery_container');
+
+        galleries.forEach(function(gallery, index) {
+            let slides = gallery.querySelectorAll('.mySlides');
+            let prevButton = gallery.querySelector('.prev');
+            let nextButton = gallery.querySelector('.next');
+            let dots = gallery.querySelectorAll('.demo');
+            let captionText = gallery.querySelector('.caption-container p');
+            let slideIndex = 1;
+
+            showSlides(slideIndex, slides, captionText, dots);
+
+            prevButton.addEventListener('click', function() {
+                showSlides(slideIndex -= 1, slides, captionText, dots);
+            });
+
+            nextButton.addEventListener('click', function() {
+                showSlides(slideIndex += 1, slides, captionText, dots);
+            });
+
+            dots.forEach(function(dot, dotIndex) {
+                dot.addEventListener('click', function() {
+                    showSlides(slideIndex = dotIndex + 1, slides, captionText, dots);
+                });
+            });
+
+            function showSlides(n, slides, captionText, dots) {
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+                captionText.innerHTML = dots[slideIndex - 1].getAttribute('alt');
+            }
+        });
+    }
+
+    // Initialize galleries when the document is ready
+    document.addEventListener('DOMContentLoaded', initializeGalleries);
+</script>
