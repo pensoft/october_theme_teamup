@@ -27,7 +27,8 @@ background = "transperant"
 templates = "template1"
 description_limit = 0
 
-[galleries]
+[page_galleries]
+pageType="ecological"
 
 ==
 {% component 'siteSearchInclude' %}
@@ -35,10 +36,14 @@ description_limit = 0
 <div class="container before-after">
     {% component 'jumbotron' %}
 </div>
+
 <div class="container">
-{% component 'accordion' %}
+    {% component 'accordion' %}
 </div>
 
+<div class="container">
+    {% component 'page_galleries' %}
+</div>
 
 <script>
     function initializeGalleries() {

@@ -20,8 +20,8 @@ background = "transperant"
 templates = "template3"
 description_limit = 0
 
-[galleries]
-
+[page_galleries]
+pageType="homepage"
 ==
 <?php
 use Pensoft\Calendar\Models\Entry;
@@ -85,6 +85,7 @@ function onStart(){
         </div>
     </div>
 </div>
+
 {% if entries.count %}
 <div class="container mt-4 upcoming_events_container">
 
@@ -117,6 +118,11 @@ function onStart(){
 </div>
 {% endif %}
 
+<!-- Galleries -->
+<div class="container">
+    {% component 'page_galleries' %}
+</div>
+
 <div class="row container middle-xs between-xs">
     <h1 class="display-1">TEAM#UP Partners</h1>
     <div class="col-xs-12 center-xs consortium_partners">
@@ -131,6 +137,9 @@ function onStart(){
         </div>
     </div>
 </div>
+
+
+
 
 <script>
     // Function to initialize all galleries on the page

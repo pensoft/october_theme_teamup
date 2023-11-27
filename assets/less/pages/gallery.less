@@ -43,9 +43,11 @@
 .next {
     cursor: pointer;
     position: absolute;
-    top: 200px;
+    top: 232px;
     width: 69px;
     height: 69px;
+    transform: translateY(-50%);
+    background-size: contain;
     background-color: transparent;
     //border-radius: 50%;
     user-select: none;
@@ -54,25 +56,25 @@
     background-position: center;
 
     .breakpoint-small-down({
-        top: 140px;
+        top: 146px;
         width: 48px;
         height: 48px;
      });
 }
 
 .next {
-    right: 10px;
+    right: 0px;
     background-image: url('../../assets/images/next-gallery.svg');
     .breakpoint-small-down({
-        right: 0px;
+        right: -15px;
      });
 }
 
 .prev {
-    left: 10px;
+    left: 0px;
     background-image: url('../../assets/images/back-gallery.svg');
     .breakpoint-small-down({
-        left: 0px;
+        left: -15px;
     });
 }
 
@@ -136,4 +138,18 @@
 
 .download-gallery{
     padding-bottom: 24px;
+}
+.go-back{
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.6;
+    }
+}
+
+.article-gallery, .event-gallery{
+    .gallery-item{
+        margin-top: 60px;
+    }
 }
