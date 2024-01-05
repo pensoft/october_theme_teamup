@@ -66,12 +66,14 @@ $(document).ready(function() {
                 $('body', 'html').css({
                     'overflow': 'hidden'
                 });
+                $('#google_translate_element').hide();
             }else{
                 $('#menu').hide("slide", { direction: "right" }, 400);
                 $('#search').hide();
                 $('body', 'html').css({
                     'overflow': 'auto'
                 });
+                $('#google_translate_element').show();
             }
         });
     }

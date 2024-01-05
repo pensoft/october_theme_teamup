@@ -85,6 +85,9 @@
         flex-basis: 230px;
         height: 100px;
         background-repeat: no-repeat;
+        .breakpoint-huge-down({
+            flex-basis: 150px;
+        });
         .breakpoint-large-down({
             flex-basis: 130px;
             height: 71px;
@@ -155,8 +158,13 @@
             z-index: @zindex-dropdown;
             font-size: 19px;
 
+            .breakpoint-huge-down({
+                font-size: 16px;
+            });
+
             .breakpoint-large-down({
                 display: none;
+                font-size: 19px;
             });
 
             .active {
@@ -267,6 +275,10 @@
                 }
             }
         }
+    });
+
+    .breakpoint-huge-down({
+        padding-top: 6px;
     });
 }
 
