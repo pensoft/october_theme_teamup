@@ -1121,9 +1121,9 @@ now override the 3.3 new styles for modern browsers & apply opacity
 
 
 .skiptranslate{
-    .breakpoint-huge-down({
+    .breakpoint-large-down({
         position: absolute!important;
-        display: none!important;
+        // display: none!important;
     });
 }
 
@@ -1139,7 +1139,28 @@ now override the 3.3 new styles for modern browsers & apply opacity
     z-index: 9999;
     left: 200px;
     .breakpoint-huge-down({
-        display: none;
+        padding: 5px;
+        width: 130px;
+        top: 32px!important;
+        left: 150px;
+    });
+    // .breakpoint-large-down({
+    //     // display: none;
+    //     // display: block;
+    //     height: 40px;
+    //     width: 198px;
+    //     /* background: #b1c524; */
+    //     padding: 5px 5px;
+    //     position: absolute;
+    //     top: 3px !important;
+    //     overflow: hidden;
+    //     z-index: 999999999999999;
+    //     left: 4px;
+    // });
+    .breakpoint-small-down({
+          width: 150px;
+          top: 30px !important;
+          left: 150px;
     });
 
     select.goog-te-combo {
@@ -1157,6 +1178,12 @@ now override the 3.3 new styles for modern browsers & apply opacity
         color: #717171;
         font-size: 15px;
         border: none;
+        .breakpoint-huge-down({
+            min-width: 100px;
+        });
+        .breakpoint-small-down({
+                min-width: 130px;
+        });
     }
 
 }
