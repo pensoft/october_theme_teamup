@@ -217,7 +217,7 @@ $this['slug'] = $this->param('slug');
 
             <br><br>
             <a  class="btn btn-primary" target="_blank"
-                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{entry.title}}&details={{entry.description|striptags('<br><p><strong><b><em><i>')|raw}}&dates={% if entry.start|date("Ymd") != entry.end|date("Ymd") %}{{entry.start|date("Ymd")}}/{{entry.end|date("Ymd")}} {% else %} {{entry.start|date("Ymd")}} {% endif %}&location={{entry.place}}">
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{entry.title}}&details={{entry.description|striptags('<br><strong><b><em><i>')|raw}}&dates={% if entry.start|date("Ymd") != entry.end|date("Ymd") %}{{entry.start|date("Ymd")}}/{{entry.end|date("Ymd")}} {% else %} {{entry.start|date("Ymd")}} {% endif %}&location={{entry.place}}">
             Add to my calendar</a>
 
             <div class="row share_container middle-xs">
