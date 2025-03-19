@@ -117,7 +117,7 @@ $this['related'] = $related;
                 </div>
             </div>
             <div class="col-xs-12">
-
+                {% if article.allow_share %}
                 <div class="row share_container middle-xs">
                     <div class="col-lg-1 col-xs-2 start-xs">Share</div>
                     <div class="col-xs-10">
@@ -129,6 +129,8 @@ $this['related'] = $related;
 
                     </div>
                 </div>
+
+                {% endif %}
 
 
             </div>
