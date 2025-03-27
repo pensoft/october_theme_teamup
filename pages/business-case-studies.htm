@@ -1,0 +1,54 @@
+url = "/business-case-studies"
+layout = "default"
+title = "Business case studies"
+is_hidden = 0
+meta_description = "business case studies page"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+header_image = "/Case-Studies.png"
+
+[siteSearchInclude]
+
+[jumbotron business-case-studies]
+jumbotron = "business-case-studies"
+background = "transperant"
+templates = "template1"
+description_limit = 0
+
+==
+<?php
+use Pensoft\Partners\Models\Partners;
+
+function onStart(){
+	$this['case_studies'] =  Partners::where('type', 4)->get();
+}
+?>
+==
+
+{% component 'siteSearchInclude' %}
+
+<div class="container-fluid business-case-stuides">
+    <div class="container">
+        <div class="col-xs-12">
+            <h2 class="business-case-stuides-title">
+                We would like to thank the following entities for their collaboration on the analysis of their business model and success strategies as case studies in the field of Ecological Restoration.
+            </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for case_study in case_studies %}
+            <div class="col-md-4 col-xs-12 business-case-wrapper">
+                <a href="{{ case_study.instituion_url }}" target="_blank">
+                    <div class="business-case-study-item">
+                        <div class="business-case-study-img">
+                            <img src="{{ case_study.cover.path}}" alt="{{ case_study.instituion }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
